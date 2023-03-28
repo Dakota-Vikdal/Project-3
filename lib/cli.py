@@ -44,8 +44,53 @@ def show_data(self):
     #     print_bottles(self.bottles)
 
 def add_data(self):
-    user_action = input("Type B to add a bottle, G to add a grape or W to add a winery: ")
+    user_action = input("Type PG to add a Project Group or S to add a Student: ")
     print(' ')
+
+    if user_action == "pg" or user_action == "PG":
+        name = input("Type project group name: ")
+        projectgroup = ProjectGroup(name = name)
+
+        session.add(projectgroup)
+        session.commit()
+
+        self.project_group.append(projectgroup)
+
+    elif user_action == "S" or user_action == "s":
+        print_project_groups(self.project_group)
+        print(' ')
+        user_input = input("Is your Project Group in the list above? (Type Y/N): ")
+        print(' ')
+
+        while user_input != "Y" and user_input != "y":
+            add_data(self)
+            print(' ')
+            print_project_groups(self.project_group)
+            print(' ')
+            user_input = input("Is your Project Group in the lists above? (Type Y/N): ")
+            print(' ')
+
+        make_student(self)
+
+def make_student(self):
+    user_project_group = input("Type the number of the project group from the list above: ")
+    name = input("What is the student's name?: " )
+    linkedin = input("What is the student's LinkedIn URL?: " )
+
+    student = Student(
+        name = name,
+        linkedin = linkedin,
+        project_groups_id = self.project_group[int(user_project_group) - 1].id,
+)
+
+    session.add(student)
+    session.commit()
+
+    self.student.append(student)
+    print(' ')
+    print('Congratulations! You have added the following student to your Project Group!')
+
+    print_student(student)
 
 def search_data(self):
      pass
