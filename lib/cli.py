@@ -93,7 +93,18 @@ def make_student(self):
     print_student(student)
 
 def search_data(self):
-     pass
+    user_action = input("Type PG to search Project Groups or S to search Students: ")
+    print(' ')
+    if user_action == "PG" or user_action == "pg" or user_action == "Pg":
+        print_project_groups(self.project_group)
+        user_pick = input("Type the number of the Project Group from the list above to see more information: ")
+        print(' ')
+        print_project_groups(self.project_group[int(user_pick) - 1].group)
+    elif user_action == "S" or user_action == "s":
+        print_students(self.student)
+        user_pick = input("Type the number of the Student from the list above to see more information: ")
+        print(' ')
+        print_students(self.student[int(user_pick) - 1].student)
 
 def print_project_groups(groups):
     print(' ')
