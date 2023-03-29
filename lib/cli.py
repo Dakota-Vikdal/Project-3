@@ -1,6 +1,10 @@
 from db.models import ProjectGroup, Student
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from start_ups import show_data, search_data
+from project_group import print_project_groups
+from students import print_student
+
 
 class CLI:
     def __init__(self, user_input):
@@ -32,16 +36,6 @@ class CLI:
                     exit = True
 
         printer(self.name)
-
-def show_data(self):
-    user_action = input("Type PG to list Project Groups, S to list Students: ")
-    print(' ')
-    if user_action == "PG" or user_action == "pg" or user_action == "Pg":
-        print_project_groups(self.project_group)
-    elif user_action == "S" or user_action == "s":
-        print_students(self.student)
-    # elif user_action == "B" or user_action == "b":
-    #     print_bottles(self.bottles)
 
 def add_data(self):
     user_action = input("Type PG to add a Project Group or S to add a Student: ")
@@ -92,59 +86,11 @@ def make_student(self):
 
     print_student(student)
 
-def search_data(self):
-    user_action = input("Type PG to search Project Groups or S to search Students: ")
-    print(' ')
-    if user_action == "PG" or user_action == "pg" or user_action == "Pg":
-        print_project_groups(self.project_group)
-        user_pick = input("Type the number of the Project Group from the list above to see more information: ")
-        print('')
-        print_project_group(self.project_group[int(user_pick) -1])
-    elif user_action == "S" or user_action == "s":
-        print_students(self.student)
-        user_pick = input("Type the number of the Student from the list above to see more information: ")
-        print(' ')
-        print_student_details(self.student[int(user_pick) - 1])
-
-def print_project_groups(groups):
-    print(' ')
-    print('Project Groups')
-    print(' ')
-
-    for index, group in enumerate(groups):
-        print(f'{index + 1}. {group.name}')
-    
-    print(' ')
-
-def print_project_group(ProjectGroup):
-    print('')
-    print(f'Project Group ID: {ProjectGroup.id}')
-    print(f'    Project Group Name: {ProjectGroup.name}')
-    print(f'    Project Group Students: {ProjectGroup.students}')
-
-def print_students(students):
-    print(' ')
-    print('Students')
-    print(' ')
-
-    for index, student in enumerate(students):
-        print_student(student)
-    print(' ')  
-
-def print_student(student):
-    print(' ')
-    print(f'Student ID: {student.id}')
-    print(f'    Student Name: {student.name}')
-
-def print_student_details(student):
-    print('')
-    print(f'Group ID: {student.project_groups_id}')
-    print(f'    Student Name: {student.name}')
-    print(f'    Student LinkedIn: {student.linkedin}')
 
 def printer(user_input):
     print(' ')
     print(f'Goodbye {user_input}!')
+
 
 if __name__ == '__main__':
     engine = create_engine('sqlite:///db/pg-to-students.db')
