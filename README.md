@@ -1,238 +1,100 @@
-# Phase 3 CLI Project Template
+# Understanding the CLI:
 
-## Learning Goals
+The CLI file holds the data that the user will be interacting with. To begin with we have an __init__ dunder method. This method is 
+functioning to break each group within our ProjectGroup class into individual elements so that if the user wishes to access one element 
+within that class they can do so. The same goes for the Student class. Here we are also creating a user_input attribute that is given 
+the name of name. This allows for any user to input their name and they will be met with the ensuing text that has been written to 
+greet them and to begin their journey through our CLI. We lastly invoke the start method within our dunder method in order to kick off 
+the CLI.
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+* start():
+Start initiates the conversation between the user and the written code. To begin with we welcome the user. The user is prompted to type 
+"list", "search", or "add" at this point in order to see a full list of the projects and students, search through the list, or add to 
+the list. Once one of these three options is selected the user will be brought on a short but delightful journey through our CLI. Once 
+this is complete the user will be prompted to press either "N" or "Y". If the user presses "N" for "no" the experience will continue 
+and the user can once again decide between adding a group or student and searching through a list of them. If the user presses "Y" for 
+"yes" the user will be kindly escorted off the CLI premises. 
 
-***
+* add_data():
+This function serves as a way for the user to add relevent information to the database. If they wish to add either a project group or a student they can do so. 
 
-## Introduction
+* make_student():
+Here we are allowing the user to create a new student that will be added to the student list. This includes the students name as well 
+as the students linkedin account.
 
-You now have a basic idea of what constitutes a CLI, but you (understandably!)
-likely don't have the best idea of where to start. Fork and clone this lesson
-for a template for your CLI. Take a look at the directory structure before we
-begin:
+* if __main__ == '__main__':
+What this does is it allows for the schema, aka the blueprint of the code, the thing that makes everything relate to one another in a
+coherent way within the code, to persist.
 
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── cli.py
-    ├── db
-    │   ├── models.py
-    │   └── seed.py
-    ├── debug.py
-    └── helpers.py
-```
+* printer():
+Once the user has decided to finish their journey the printer waves them off with a print of "Goodbye" plus the user's name.
 
-> **Note: You may already know some or all of the material covered in this
-> lesson. We hope that having it all in one place will help you in designing
-> and developing your project, regardless of where you're starting off.**
 
-***
 
-## Where Do I Start?
+# project_group
 
-This project will likely be one of the biggest projects you've undertaken so
-far. Your first task should be creating a Git repository to keep track of your
-work and roll back any undesired changes.
+* print_project_groups():
+This function allows the user to access individual projects within the list of projects.
 
-### Removing Existing Git Configuration
+* print_project_group():
+This function prints up the various printed lines of code seen in the command line after querying a particular project.
 
-If you're using this template, start off by removing the existing metadata for
-Github and Canvas. Run the following command to carry this out:
 
-```console
-$ rm -rf .git .canvas
-```
 
-The `rm` command removes files from your computer's memory. The `-r` flag tells
-the console to remove _recursively_, which allows the command to remove
-directories and the files within them. `-f` removes them permanently.
+# start_ups
 
-`.git` contains this directory's configuration to track changes and push to
-Github (you want to track and push _your own_ changes instead), and `.canvas`
-contains the metadata to create a Canvas page from your Git repo. You don't have
-the permissions to edit our Canvas course, so it's not worth keeping around.
+* show_data():
+This function serves to allow the user to input either upper or lower case spelling when inputting the requested "s" or "pg" in order 
+to access the students or projects. It also serves to show the data once the list has been selected.
 
-### Creating Your Own Git Repo
+* search_data():
+This allows the user to search through the students and projects to select an individual element within the list.
 
-First things first- rename this directory! Once you have an idea for a name,
-move one level up with `cd ..` and run `mv python-p3-cli-project-template
-<new-directory-name>` to change its name.
 
-> **Note: `mv` actually stands for "move", but your computer interprets this
-> rename as a move from a directory with the old name to a directory with
-> a new name.**
 
-`cd` back into your new directory and run `git init` to create a local git
-repository. Add all of your local files to version control with `git add --all`,
-then commit them with `git commit -m'initial commit`. (You can change the
-message here- this one is just a common choice.)
+# Students
 
-Navigate to [GitHub](github.com). In the upper-right corner of the page, click
-on the "+" dropdown menu, then select "New repository". Enter the name of your
-local repo, choose whether you would like it to be public or private, make sure
-"Initialize this repository with a README" is unchecked (you already have one),
-then click "Create repository".
+* print_students():
+This function allows the user to access individual students within the list of students.
 
-Head back to the command line and enter `git remote add <project name> <github
-url>`. This will map the remote repository to your local repository. Finally,
-push your first commit with `git push -u origin main`.
+* print_student():
+This function prints up the various printed lines of code seen in the command line after querying a particular student.
 
-Your project is now version-controlled locally and online. This will allow you
-to create different versions of your project and pick up your work on a
-different machine if the need arises.
+* print_student_details():
+This prints up the group id, student name, and student linkedin.
 
-***
 
-## Generating Your Pipenv
 
-You might have noticed in the file structure- there's already a Pipfile! That
-being said, we haven't put much in there- just Python version 3.8 and ipdb.
+# h1 Seed
 
-Install any dependencies you know you'll need for your project, like SQLAlchemy
-and Alembic, before you begin. You can do this straight from the command line:
+The seed file functions to populate the database with realistic data when testing out new features within the database. This is why you'll see the fake function method utilized in our code. This method will give random data that fits the content of the database, such as random names, random colors, random urls, etc. You can, of course, also input data of your own. We have done both in our seed file.
 
-```console
-$ pipenv install sqlalchemy alembic
-```
+* if __name__ == '__main__':
+In our first line of code we are connecting to a sqlite database which we have named "pg-to-students.db". In lines two and three we are setting up our code so we can add content to the database. These lines of code are akin to a class and an instance in python respectively. If we continue down we'll see that we are calling a delete method on the session.query. This is done so when we seed our database it is always done with a fresh slate. If we didn't delete the previous data after leaving the database and getting back into it the data would stack. We would go from seeding the data with 10 names to suddenly having 20 names, to 30, 40, and so on. This method makes sure to always clear the database of that particular data after every exit from the database.
 
-From here, you should run your second commit:
+* fake = Fake():
+This is attaching the fake function to a variable for later use.
 
-```console
-$ git add Pipfile Pipfile.lock
-$ git commit -m'add sqlalchemy and alembic to pipenv'
-$ git push
-```
+linkedIn and groupnames are creating lists for the database to use.
 
-Now that your environment is set up, run `pipenv shell` to enter it.
+* projectgroups:
+This list is holding the randomly placed groupnames that will be displayed in the CLI. 
 
-***
+* students:
+This list is holding the randomly generated fake names of the students as well as the randomly distributed linkedin accounts associated with those students and lastly the project groups id.
 
-## Generating Your Database
 
-Once you're in your environment, you can start development wherever you'd like.
-We think it's easiest to start with setting up your database.
 
-`cd` into the `lib/db` directory, then run `alembic init migrations` to set up
-Alembic. Modify line 58 in `alembic.ini` to point to the database you intend to
-create, then replace line 21 in `migrations/env.py` with the following:
+# h1 debug
+This file is used to enter a debugger within the terminal in order to debug the code, whether that be for playing with the code to better understand it or maybe to try and figure out an error.
 
-```py
-from models import Base
-target_metadata = Base.metadata
-```
 
-We haven't created our `Base` or any models just yet, but we know where they're
-going to be. Navigate to `models.py` and start creating those models. Remember
-to regularly run `alembic revision --autogenerate -m'<descriptive message>'` and
-`alembic upgrade head` to track your modifications to the database and create
-checkpoints in case you ever need to roll those modifications back.
 
-If you want to seed your database, now would be a great time to write out your
-`seed.py` script and run it to generate some test data. You may want to use
-Pipenv to install Faker to save you some time.
+# Models 
+Firstly we have this crazy line called "convention" full of weird characters and just bellow that we have something called "metadata". Convention is present because SQLite requires names for changes to foreign keys and several other fields in models. The "convention" provides a template for naming these changes, and the metadata saves them to a sqlalchemy.Metadata object. Passing all of this to the declarative_base object allows for Alembic to generate these names automatically when we autogenerate migrations. 
 
-***
+* ProjectGroup:
+This class is creating the table for the project groups and is connecting to the class Students via the relationship() method. The inclusion of a foreign key in the Student class completes this relationship. Meaning there are many students to one Project Group
 
-## Generating Your CLI
-
-A CLI is, simply put, an interactive script. You can run it with `python cli.py`
-or include the shebang and make it executable with `chmod +x`. It will ask for
-input, do some work, and accomplish some sort of task by the end.
-
-Past that, CLIs can be whatever you'd like. An inventory navigator? A checkout
-station for a restaurant? A choose-your-adventure video game? Absolutely!
-
-Here's what all of these things have in common (if done well): a number of
-`import` statements (usually _a lot_ of import statements), an `if __name__ ==
-"__main__"` block, and a number of function calls inside of that block. These
-functions should be kept in other modules (ideally not _just_ `helpers.py`)
-
-There will likely be some `print()` statements in your CLI script to let the
-user know what's going on, but most of these can be placed in functions in
-other modules that are grouped with others that carry out similar tasks. You'll
-see some variable definitions, object initializations, and control flow
-operators (especially `if/else` blocks and `while` loops) as well. When your
-project is done, your `cli.py` file might look like this:
-
-```py
-from helpers import (
-    function_1, function_2,
-    function_3, function_4,
-    function_5, function_6,
-    function_7, function_8,
-    function_9, function_10
-)
-
-if __name__ == '__main__':
-    print('Welcome to my CLI!')
-    function_1()
-    x = 0
-    while not x:
-        x = function_2(x)
-    if x < 0:
-        y = function_3(x)
-    else:
-        y = function_4(x)
-    z = function_5(y)
-    z = function_6(z)
-    z = function_7(z)
-    z = function_8(z)
-    function_9(z)
-    function_10(x, y, z)
-    print('Thanks for using my CLI')
-
-```
-
-***
-
-## Updating Your README.md
-
-`README.md` is a Markdown file that describes your project. These files can be
-used in many different ways- you may have noticed that we use them to generate
-entire Canvas lessons- but they're most commonly used as homepages for online
-Git repositories. **When you develop something that you want other people to
-use, you need to have a README.**
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this lesson's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README should serve as a template for your own- go through the important
-files in your project and describe what they do. Each file that you edit
-(you can ignore your Alembic files) should get at least a paragraph. Each
-function should get a small blurb.
-
-You should descibe your actual CLI script first, and with a good level of
-detail. The rest should be ordered by importance to the user. (Probably
-functions next, then models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
-***
-
-## Conclusion
-
-A lot of work goes into a good CLI, but it all relies on concepts that you've
-practiced quite a bit by now. Hopefully this template and guide will get you
-off to a good start with your Phase 3 Project.
-
-Happy coding!
-
-***
-
-## Resources
-
-- [Setting up a respository - Atlassian](https://www.atlassian.com/git/tutorials/setting-up-a-repository)
-- [Create a repo- GitHub Docs](https://docs.github.com/en/get-started/quickstart/create-a-repo)
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
+* Student:
+This class is creating the table for the students. They each have a name as well as a linkedin account. The Student class has a foreign key in order to connect it with the project group. The __repr__ is used to set a default output value when you print out an instance of the class in the terminal.  
