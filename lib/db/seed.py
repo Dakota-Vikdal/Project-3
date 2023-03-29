@@ -16,16 +16,15 @@ if __name__ == '__main__':
 
     fake = Faker()
 
-    linkedin = ['abc', 'def', 'ghi',
-        'jkl', 'mno', 'pqr', 'tuv', 'wx', 'yz']
-    # platforms = ['nintendo 64', 'gamecube', 'wii', 'wii u', 'switch',
-    #     'playstation', 'playstation 2', 'playstation 3', 'playstation 4',
-    #     'playstation 5', 'xbox', 'xbox 360', 'xbox one', 'pc']
+    linkedin = ['studenta@linkedin.com', 'studentb@linkedin.com', 'studentc@linkedin.com',
+        'studentd@linkedin.com', 'studente@linkedin.com', 'studentf@linkedin.com', 'studentg@linkedin.com', 'studenth@linkedin.com', 'studenti@linkedin.com', 'studentj@linkedin.com']
+    groupnames = ['nintendo 64', 'gamecube', 'switch',
+        'playstation', 'playstation 2', 'playstation 3', 'xbox', 'xbox 360', 'xbox one', 'pc']
 
     projectgroups = []
     for i in range(10):
         projectgroup = ProjectGroup(
-            name=fake.unique.name()
+            name=random.choice(groupnames)
         )
 
         # add and commit individually to get IDs back

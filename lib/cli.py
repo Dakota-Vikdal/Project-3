@@ -16,7 +16,7 @@ class CLI:
 
         exit = False
         while exit == False:
-                choice = input(f'Type "list" to see the Full List of Student and their LinkedIns, type "add" to add a Student or LinkedIN Profile, type "search" to Search by Student: ')
+                choice = input(f'Type "list" to see the Full List of Students or Project Groups, type "add" to add a Student or Project Group, type "search" to Search by Student or Project Group: ')
                 print(' ') 
                 if choice.lower() == "list":
                      show_data(self)
@@ -98,13 +98,13 @@ def search_data(self):
     if user_action == "PG" or user_action == "pg" or user_action == "Pg":
         print_project_groups(self.project_group)
         user_pick = input("Type the number of the Project Group from the list above to see more information: ")
-        print(' ')
-        print_project_groups(self.project_group[int(user_pick) - 1].group)
+        print('')
+        print_project_group(self.project_group[int(user_pick) -1])
     elif user_action == "S" or user_action == "s":
         print_students(self.student)
         user_pick = input("Type the number of the Student from the list above to see more information: ")
         print(' ')
-        print_students(self.student[int(user_pick) - 1].student)
+        print_student_details(self.student[int(user_pick) - 1])
 
 def print_project_groups(groups):
     print(' ')
@@ -115,6 +115,12 @@ def print_project_groups(groups):
         print(f'{index + 1}. {group.name}')
     
     print(' ')
+
+def print_project_group(ProjectGroup):
+    print('')
+    print(f'Project Group ID: {ProjectGroup.id}')
+    print(f'    Project Group Name: {ProjectGroup.name}')
+    print(f'    Project Group Students: {ProjectGroup.students}')
 
 def print_students(students):
     print(' ')
@@ -127,11 +133,14 @@ def print_students(students):
 
 def print_student(student):
     print(' ')
+    print(f'Student ID: {student.id}')
+    print(f'    Student Name: {student.name}')
+
+def print_student_details(student):
+    print('')
     print(f'Group ID: {student.project_groups_id}')
-    # print(f'Grape: {bottle.grape.name}')
-    print(f'    Student Name:{student.name}')
+    print(f'    Student Name: {student.name}')
     print(f'    Student LinkedIn: {student.linkedin}')
-    # print(f'    Score: {bottle.score}')
 
 def printer(user_input):
     print(' ')
