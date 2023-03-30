@@ -7,6 +7,28 @@ the name of name. This allows for any user to input their name and they will be 
 greet them and to begin their journey through our CLI. We lastly invoke the start method within our dunder method in order to kick off 
 the CLI.
 
+```python
+├── Pipfile
+├── Pipfile.lock
+├── README.md
+└── lib
+    ├── cli.py
+    ├── db
+    │   ├── alembic.ini
+    │   ├── debug.py
+    │   ├── migrations
+    │   │   ├── env.py
+    │   │   ├── script.py.mako
+    │   │   └── versions
+    │   ├── models.py
+    │   ├── pg-to-students.db
+    │   └── seed.py
+    ├── project_group.py
+    ├── start_ups.py
+    └── students.py
+
+```
+
 * start():
 Start initiates the conversation between the user and the written code. To begin with we welcome the user. The user is prompted to type 
 "list", "search", or "add" at this point in order to see a full list of the projects and students, search through the list, or add to 
@@ -65,7 +87,7 @@ This prints up the group id, student name, and student linkedin.
 
 
 
-# h1 Seed
+# Seed
 
 The seed file functions to populate the database with realistic data when testing out new features within the database. This is why you'll see the fake function method utilized in our code. This method will give random data that fits the content of the database, such as random names, random colors, random urls, etc. You can, of course, also input data of your own. We have done both in our seed file.
 
@@ -85,7 +107,7 @@ This list is holding the randomly generated fake names of the students as well a
 
 
 
-# h1 debug
+# debug
 This file is used to enter a debugger within the terminal in order to debug the code, whether that be for playing with the code to better understand it or maybe to try and figure out an error.
 
 
