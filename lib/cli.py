@@ -15,7 +15,7 @@ class CLI:
     
     def start(self):
         print(' ')
-        print(f'** Welcome To C L I-din {self.name} ***')
+        print(f'🌐 Welcome To C L I-din {self.name} 🌐')
         print(' ')
 
         exit = False
@@ -30,7 +30,7 @@ class CLI:
                      search_data(self)
         
                 print(' ')
-                user_input = input("Would you like to stop now? (Type Y/N): ")
+                user_input = input("Would you like to stop now? 🛑 (Type Y/N): ")
                 print(' ')
                 if user_input == "Y" or user_input == 'y':
                     exit = True
@@ -75,26 +75,25 @@ def make_student(self):
         name = name,
         linkedin = linkedin,
         project_groups_id = self.project_group[int(user_project_group) - 1].id,
-)
+    )
 
     session.add(student)
     session.commit()
 
     self.student.append(student)
     print(' ')
-    print('Congratulations! You have added the following student to your Project Group!')
+    print('✨Congratulations! You have added the following student to your Project Group!✨')
 
     print_student(student)
 
-
 def printer(user_input):
     print(' ')
-    print(f'Goodbye {user_input}!')
+    print(f'Goodbye {user_input}!👋')
 
 
 if __name__ == '__main__':
     engine = create_engine('sqlite:///db/pg-to-students.db')
     Session = sessionmaker(bind=engine)
     session = Session()
-    user_input = input("Enter Your Name: ")
+    user_input = input("👤 Enter Your Name: ")
     CLI(user_input)
